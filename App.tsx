@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { SafeAreaView } from 'react-native';
+import Landing from './pages/landing/landing';
+import SignIn from './pages/signin/signin';
+import SignUp from './pages/signup/signup';
+import ResetPassword from './pages/resetPassword/resetPassword';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { baseStyles } from './style';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={baseStyles.container}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            name="landing"
+            component={Landing}
+          />
+          <Stack.Screen
+            name="signin"
+            component={SignIn}
+          />
+          <Stack.Screen
+            name="signup"
+            component={SignUp}
+          />
+          <Stack.Screen 
+            name="reset-password" 
+            component={ResetPassword}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
